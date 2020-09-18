@@ -1,8 +1,8 @@
 #include "Arduino.h"
 
-#define RECEPTOR                //comente para habilitar o transmissor
+//#define RECEPTOR                //comente para habilitar o transmissor
 
-#define TRANSMISSOR
+//#define TRANSMISSOR
 
 #ifndef RECEPTOR
 #define TRANSMISSOR
@@ -14,12 +14,12 @@
 
 const uint64_t my_radio_pipe = 0xE8E8F0F0E1LL;  //Remember that this code should be the same for the receiver
 
-//const uint64_t pipeIn = 0xE8E8F0F0E1LL; //Remember that this code is the same as in the transmitter
+//const uint64_t pipeIn = 0xE8E8F0F0E1LL;       //Remember that this code is the same as in the transmitter
 
 
 
 
-struct pacoteDeDados
+struct PacoteDeDados
 {
   byte ch1;
   byte ch2;
@@ -28,4 +28,7 @@ struct pacoteDeDados
   byte ch5;
   byte ch6;
   byte ch7;
+  byte ch8;
+  byte ch9;
+  byte ch10;
 };

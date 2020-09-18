@@ -5,10 +5,8 @@
 #ifndef JOYSTICK_H
 #define JOYSTICK_H
 
-#include "Joystick.h"
 #include "AnalogReader.h"
 #include "Button.h"
-#include "Arduino.h"
 
 class Joystick 
 {

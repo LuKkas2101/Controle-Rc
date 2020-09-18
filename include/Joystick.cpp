@@ -1,5 +1,5 @@
 #include "Joystick.h"
-
+#include "Arduino.h"
 /**
 * Construct Joystick instance.<BR>
 * It consists of two 10Kohm potentiometer and a Pushbutton.<BR>

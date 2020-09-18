@@ -1,9 +1,9 @@
 /* Tranmsitter code for the Arduino Radio control with PWM or PPM output
  * Install the NRF24 library to your IDE
- * Upload this code to the Arduino UNO, NANO, Pro mini (5V,16MHz)
+ * Upload this code to the Arduino (5V,16MHz)
  * Connect a NRF24 module to it:
  
-    Module // Arduino UNO,NANO
+    Module // Arduino 
     
     GND    ->   GND
     Vcc    ->   3.3V
@@ -14,7 +14,6 @@
     MISO   ->   D12
 
 This code transmits 7 channels with data from pins A0, A1, A2, A3, A4, D2 and D3
-Please, like share and subscribe : https://www.youtube.com/c/ELECTRONOOBS
 */
 
 #include <configure.h>
@@ -40,11 +39,16 @@ struct Data_to_be_sent {
 */
 
 //Create a variable with the structure above and name it sent_data
-pacoteDeDados sent_data;
+PacoteDeDados sent_data;
 Joystick joystick_1(A0, A1, 2);
 Joystick joystick_2(A2, A3, 3);
-Potentiometer potentiometer_5v1_1(A4); 
+Potentiometer potentiometer_5v1_1(A4);
+Potentiometer potentiometer_5v1_2(A5);
+Button button1(4);
+Button button2(5);
+
 RF24 radio(9, 10);  //Set CE and CSN pins
+
 
 void setup()
 {
@@ -52,6 +56,9 @@ void setup()
   radio.setAutoAck(false);
   radio.setDataRate(RF24_250KBPS);
   radio.openWritingPipe(my_radio_pipe);
+
+  button1.init(INPUT);
+  button2.init(INPUT);
 
   //Reset each channel value
   sent_data.ch1 = 127;
@@ -79,8 +86,12 @@ void loop()
   sent_data.ch6 = joystick_2.getSW();
 
   sent_data.ch7 = potentiometer_5v1_1.read(0, 255);
+  sent_data.ch8 = potentiometer_5v1_2.read(0, 255);
 
-  radio.write(&sent_data, sizeof(pacoteDeDados));
+  sent_data.ch9 = button1.onChange();
+  sent_data.ch10 = button1.onChange();
+  
+  radio.write(&sent_data, sizeof(PacoteDeDados));
 }
 
 #endif
