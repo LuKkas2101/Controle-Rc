@@ -50,7 +50,7 @@ Button button1(4);
 Button button2(5);
 LED led1(6);
 LED led2(7);
-Buzzer buzzer1(8);
+Buzzer buzzer1(8); 
 RF24 radio(9, 10); //Set CE and CSN pins
 
 void setup()
