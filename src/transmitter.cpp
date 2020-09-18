@@ -24,6 +24,8 @@ This code transmits 7 channels with data from pins A0, A1, A2, A3, A4, D2 and D3
 #include <nRF24L01.h> 
 #include <RF24.h>
 #include <Arduino.h>
+#include "LED.h"
+#include "Buzzer.h"
 
 /*
 // The sizeof this struct should not exceed 32 bytes
@@ -46,9 +48,11 @@ Potentiometer potentiometer_5v1_1(A4);
 Potentiometer potentiometer_5v1_2(A5);
 Button button1(4);
 Button button2(5);
+LED led1(6);
+LED led2(7);
+Buzzer buzzer1(8);
 
-RF24 radio(9, 10);  //Set CE and CSN pins
-
+RF24 radio(9, 10); //Set CE and CSN pins
 
 void setup()
 {
